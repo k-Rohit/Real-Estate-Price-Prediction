@@ -58,6 +58,6 @@ if st.button('Predict'):
         low = base_price - 0.22
         high = base_price + 0.22
 
-        st.markdown(f"<h4><b>The price of the flat is between {round(low, 2)} Cr and {round(high, 2)} Cr</b></h4>", unsafe_allow_html=True)
+        st.success(f"**The price of the flat is between {round(low, 2)} Cr and {round(high, 2)} Cr**")
     except Exception as e:
         st.error(f"An error occurred: {e}")
