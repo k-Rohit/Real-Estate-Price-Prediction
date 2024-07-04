@@ -1,7 +1,7 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import joblib
+# import joblib
 import pickle
 
 # Title of the application
@@ -12,7 +12,7 @@ with open('pipelines/df_v2.pkl', 'rb') as file:
     df = pickle.load(file)
 
 with open('pipelines/pipeline_1.pkl', 'rb') as file:
-    pipeline = joblib.load(file)
+    pipeline = pickle.load(file)
 
 st.header("Enter your inputs")
 
@@ -50,8 +50,6 @@ if st.button('Predict'):
 
     one_df = pd.DataFrame(data, columns=columns)
 
-    # Display the DataFrame (for debugging)
-    st.write(one_df)
 
     try:
         # Make prediction
@@ -60,6 +58,6 @@ if st.button('Predict'):
         low = base_price - 0.22
         high = base_price + 0.22
 
-        st.text("The price of the flat is between {} Cr and {} Cr".format(round(low,2),round(high,2)))
+        st.markdown(f"<h4><b>The price of the flat is between {round(low, 2)} Cr and {round(high, 2)} Cr</b></h4>", unsafe_allow_html=True)
     except Exception as e:
         st.error(f"An error occurred: {e}")
